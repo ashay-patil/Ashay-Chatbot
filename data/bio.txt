@@ -1,0 +1,49 @@
+My name is Ashay Patil. I am a Computer Engineering student at Vishwakarma Institute of Technology in Pune, Maharashtra, India. I am currently pursuing my Bachelor of Technology degree from 2023 to 2027. I have achieved a CGPA of 9.04 out of 10, which reflects my strong academic discipline, consistency, and deep understanding of computer science concepts.
+
+I am a highly motivated and intellectually curious software engineer with strong analytical thinking and problem-solving abilities. I naturally approach problems by first understanding their fundamentals, breaking them into smaller logical components, and then designing efficient and scalable solutions. I focus on building systems that are not only functional but also secure, maintainable, and production-ready.
+
+My technical journey began with learning programming fundamentals in C and Java, where I developed a strong understanding of memory, logic, control flow, and object-oriented programming. I then progressed to Data Structures and Algorithms, where I developed deep problem-solving skills and algorithmic thinking. I have solved more than 350 problems on LeetCode, which has strengthened my ability to think logically, optimize solutions, and handle complex algorithmic challenges.
+
+I expanded my skills into full-stack web development, where I learned how complete software systems work from frontend user interface to backend server and database. I gained strong expertise in frontend development using HTML, CSS, JavaScript, and React.js, where I learned how to design responsive, user-friendly interfaces and manage application state and routing.
+
+My strongest expertise lies in backend engineering, where I design secure and scalable server systems using Node.js and Express.js. I understand backend architecture, REST API design, authentication systems, database integration, and secure data handling. I have implemented production-level authentication systems using JSON Web Tokens, refresh tokens, OTP verification, password hashing with bcrypt, and secure cookie-based authentication.
+
+I have strong experience working with databases such as MongoDB and MySQL. I understand database schema design, relationships, indexing, query optimization, and efficient data retrieval. I use MongoDB Atlas for cloud database hosting and understand real-world database deployment.
+
+I have built multiple full-stack applications that solve real-world problems. One of my major projects is Study Vault, which is a scalable resource sharing platform for students. This platform allows students to upload, discover, rate, and download academic resources. I implemented secure authentication, file upload using Cloudinary, backend APIs using Express.js, and database management using MongoDB. The system follows a proper MVC architecture and includes validation, search, filtering, pagination, and secure file handling.
+
+Another major project I built is WisdomPool, an AI-powered placement experience sharing and mentoring platform. This platform integrates artificial intelligence to analyze interview experiences and generate personalized preparation strategies. I integrated Google Gemini AI into the backend system to build an AI mentor that can guide users based on real interview experience data.
+
+I also have hands-on experience building artificial intelligence powered backend systems. I built an AI chatbot using Python, Flask, vector embeddings, and a vector database. This chatbot can answer questions about me by retrieving relevant information from stored data and generating intelligent responses using an AI language model. Through this project, I gained deep understanding of how AI systems work internally, including embeddings, vector similarity search, retrieval augmented generation, and language model integration.
+
+I have strong system design thinking and always focus on building scalable, maintainable, and secure architectures. I understand concepts such as authentication flow, access tokens, refresh tokens, backend routing, database interaction, and API communication.
+
+I am highly disciplined, consistent, and focused in my learning process. I regularly practice programming, build projects, and continuously improve my skills. I am self-driven and capable of learning complex technologies independently by understanding their fundamentals.
+
+I have strong logical intelligence and analytical thinking ability. I do not rely on memorization. Instead, I focus on understanding the underlying principles of systems, which allows me to solve new and unfamiliar problems effectively.
+
+I am capable of debugging complex software systems by carefully analyzing system flow, identifying root causes, and implementing proper solutions. I understand how different components of a system interact and how to fix issues efficiently.
+
+I have experience working with development tools such as Git, GitHub, Postman, and Docker. I understand version control, collaboration workflows, API testing, and application containerization.
+
+I am highly interested in backend engineering, artificial intelligence, and scalable distributed systems. I enjoy designing systems that can handle real-world usage and follow proper engineering practices.
+
+I have demonstrated my technical skills and competitiveness by becoming a Top 10 Finalist in the Oneab Ventures AI Agents Hackathon, which had more than 150 teams participating nationwide. This achievement reflects my strong problem-solving ability, technical capability, and ability to work under pressure.
+
+I have achieved a 5-star rating in Python and 4-star rating in C on HackerRank, demonstrating my strong programming skills.
+
+My goal is to become a highly skilled software engineer specializing in backend systems, artificial intelligence, and scalable software architecture.
+
+I am actively preparing for software engineering internships and am fully capable of working in real-world engineering environments. I have the skills required to contribute to backend development, full-stack development, and AI-powered systems.
+
+I am a fast learner, highly dedicated, and capable of adapting to new technologies quickly. I continuously improve my skills through practice, project development, and deep technical learning.
+
+My email address is ashaypatil2005@gmail.com.
+
+My GitHub profile is github.com/ashay-patil.
+
+My LinkedIn profile is linkedin.com/in/ashay-patil-164a17291.
+
+My LeetCode profile is leetcode.com/u/i_m_ashay_.
+
+I am actively seeking software engineering internship opportunities where I can apply my skills, contribute to real-world systems, and grow as a professional engineer.
