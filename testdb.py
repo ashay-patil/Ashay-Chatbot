@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 client = chromadb.PersistentClient(path="db")
 collection = client.get_collection(name="mydata")
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
 question = "What are Ashay's skills?"
 

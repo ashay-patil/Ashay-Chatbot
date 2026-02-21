@@ -1,20 +1,16 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# Load embedding model
 model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
-# Create persistent client (THIS IS THE CORRECT WAY NOW)
 client = chromadb.PersistentClient(path="db")
 
-# Create or get collection
 collection = client.get_or_create_collection(name="mydata")
 
 # Read bio file
 with open("data/bio.txt", "r", encoding="utf-8") as file:
     text = file.read()
 
-# Split into paragraphs
 paragraphs = [p.strip() for p in text.split("\n") if p.strip()]
 
 # Generate embeddings

@@ -5,18 +5,14 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 load_dotenv()
-# Configure Gemini API key
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# Load Gemini model
 model_gemini = genai.GenerativeModel("models/gemini-2.5-flash")
 
 app = Flask(__name__)
 
-# Load embedding model
 embedding_model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
-# Load Chroma database
 client = chromadb.PersistentClient(path="db")
 
 collection = client.get_or_create_collection(name="mydata")
