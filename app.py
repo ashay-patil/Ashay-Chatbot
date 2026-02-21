@@ -14,17 +14,15 @@ model_gemini = genai.GenerativeModel("models/gemini-2.5-flash")
 app = Flask(__name__)
 
 # Load embedding model
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+embedding_model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
 # Load Chroma database
 client = chromadb.PersistentClient(path="db")
 
 collection = client.get_collection(name="mydata")
 
-
 def get_relevant_context(question):
     question_embedding = embedding_model.encode([question])
-
     results = collection.query(
         query_embeddings=question_embedding.tolist(),
         n_results=2
@@ -52,14 +50,11 @@ def generate_answer(question, context):
 
 @app.route("/chat", methods=["POST"])
 def chat():
-
     data = request.json
     question = data.get("question")
-
     context = get_relevant_context(question)
 
     answer = generate_answer(question, context)
-
     return jsonify({
         "answer": answer
     })
