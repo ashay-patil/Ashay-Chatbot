@@ -11,17 +11,31 @@ collection = client.get_or_create_collection(name="mydata")
 with open("data/bio.txt", "r", encoding="utf-8") as file:
     text = file.read()
 
-paragraphs = [p.strip() for p in text.split("\n") if p.strip()]
 
-# Generate embeddings
-embeddings = model.encode(paragraphs)
+sentences = text.split(". ")
 
-# Store embeddings
-for i in range(len(paragraphs)):
+chunks = []
+current_chunk = ""
+
+for sentence in sentences:
+    if len(current_chunk) + len(sentence) < 300:
+        current_chunk += sentence + ". "
+    else:
+        chunks.append(current_chunk.strip())
+        current_chunk = sentence + ". "
+
+if current_chunk:
+    chunks.append(current_chunk.strip())
+
+embeddings = model.encode(chunks)
+
+
+for i in range(len(chunks)):
     collection.add(
-        ids=[str(i)],
-        documents=[paragraphs[i]],
-        embeddings=[embeddings[i].tolist()]
-    )
+ids=[str(i)],
+documents=[chunks[i]],
+embeddings=[embeddings[i].tolist()]
+)
+
 
 print("Embeddings stored permanently in db folder.")

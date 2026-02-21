@@ -23,7 +23,7 @@ def get_relevant_context(question):
     question_embedding = embedding_model.encode([question])[0]
     results = collection.query(
         query_embeddings=[question_embedding.tolist()],
-        n_results=2
+        n_results=4
     )
 
     return " ".join(results["documents"][0])
