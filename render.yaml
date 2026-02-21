@@ -4,10 +4,12 @@ services:
     env: python
     region: oregon
     plan: starter  # Use 'free' for free tier, 'starter' for $7/month (512MB), 'standard' for $25/month (2GB)
-    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && python embed.py"
     startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120 --max-requests 100 --max-requests-jitter 10"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.19
       - key: GEMINI_API_KEY
         sync: false  # Set this manually in Render dashboard
+      - key: TOKENIZERS_PARALLELISM
+        value: "false"

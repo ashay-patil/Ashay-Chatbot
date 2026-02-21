@@ -19,12 +19,12 @@ embedding_model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 # Load Chroma database
 client = chromadb.PersistentClient(path="db")
 
-collection = client.get_collection(name="mydata")
+collection = client.get_or_create_collection(name="mydata")
 
 def get_relevant_context(question):
-    question_embedding = embedding_model.encode([question])
+    question_embedding = embedding_model.encode([question])[0]
     results = collection.query(
-        query_embeddings=question_embedding.tolist(),
+        query_embeddings=[question_embedding.tolist()],
         n_results=2
     )
 
