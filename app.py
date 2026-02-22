@@ -23,7 +23,7 @@ def get_relevant_context(question):
     question_embedding = embedding_model.encode([question])[0]
     results = collection.query(
         query_embeddings=[question_embedding.tolist()],
-        n_results=4
+        n_results=10
     )
 
     return " ".join(results["documents"][0])
@@ -66,4 +66,4 @@ def hello() :
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug = True)

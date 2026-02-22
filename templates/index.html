@@ -1,21 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chatty</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashay's Chatbot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="chat-container">
-    <div class="chat-header">
-        Chatty
-    </div>
+<div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
 
-    <div id="chat-box" class="chat-box"></div>
+<div class="chat-wrapper">
+    <div class="chat-container">
 
-    <div class="chat-input-area">
-        <input type="text" id="message-input" placeholder="Type a message">
-        <button onclick="sendMessage()">Send</button>
+        <div class="chat-header">
+            <div class="header-left">
+                <div class="avatar-ring">
+                    <div class="avatar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="status-dot"></span>
+                </div>
+                <div class="header-info">
+                    <span class="header-title">Ashay's Chatbot</span>
+                    <span class="header-sub">Always here to help</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" title="Search" onclick="toggleSearch()">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </button>
+                <button class="icon-btn" title="Clear chat" onclick="clearChat()">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-bar" id="search-bar">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="search-input" placeholder="Search messages…" oninput="searchMessages(this.value)">
+            <button onclick="clearSearch()">✕</button>
+        </div>
+
+        <div id="chat-box" class="chat-box">
+            <div class="date-divider"><span>Today</span></div>
+            <div class="message bot-message intro-msg" data-text="Hi! I'm Ashay's Chatbot 👋 Ask me anything about Ashay — I'm here to help.">
+                <div class="msg-bubble">Hi! I'm Ashay's Chatbot 👋 Ask me anything about Ashay — I'm here to help.</div>
+                <div class="msg-meta">Just now</div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="typing-avatar">C</div>
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <div class="input-row">
+                <button class="attach-btn" title="Attach file">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    </svg>
+                </button>
+                <div class="input-box">
+                    <textarea id="message-input" placeholder="Type a message…" rows="1" oninput="autoResize(this)"></textarea>
+                </div>
+                <button class="send-btn" id="send-btn" onclick="sendMessage()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="input-footer">
+                <span>Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line</span>
+            </div>
+        </div>
+
     </div>
 </div>
 
