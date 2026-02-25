@@ -4,12 +4,68 @@ const sendBtn       = document.getElementById("send-btn");
 const typingEl      = document.getElementById("typing-indicator");
 const searchBar     = document.getElementById("search-bar");
 const searchInput   = document.getElementById("search-input");
+const display_name = document.getElementsByClassName("display-name")[0];
+const token = localStorage.getItem("token");
 
-let sessionId = localStorage.getItem("session_id");
-if (!sessionId) {
-    sessionId = Math.random().toString(36).substring(2);
-    localStorage.setItem("session_id", sessionId);
+if (!token) {
+    window.location.href = "/login";
 }
+
+async function verifyUser() {
+    try {
+        const response = await fetch("/getme", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Invalid token");
+        }
+
+        const user = await response.json();
+        console.log("User :" , user);
+        display_name.innerHTML = "Hello" + user.name
+        console.log("Reached here");
+        await loadChats();
+
+    } catch (err) {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
+}
+
+verifyUser();
+
+function logout(){
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+}
+
+async function loadChats() {
+    try {
+        const response = await fetch("/chats", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        const chats = await response.json();
+        // console.log(chats.chats);
+        chat_arr = chats.chats;
+        chat_display = [...chat_arr].reverse();
+        chat_display.forEach(chat => {
+            appendMessage(chat.question, "user");
+            appendMessage(chat.response, "bot");
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 
 let isBotTyping   = false;
 let allMessages   = []; // { el, text, type }
@@ -89,9 +145,17 @@ async function sendMessage() {
 
     try {
         const response = await fetch("/chat", {
-            method:  "POST",
-            headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ session_id: sessionId, question: message })
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+
+            body: JSON.stringify({
+                question: message
+            })
         });
 
         const data = await response.json();

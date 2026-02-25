@@ -1,3 +1,5 @@
+from os import path
+
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
@@ -217,7 +219,38 @@ def get_user_chats():
 def hello():
     return render_template("index.html")
 
+@app.route("/login", methods=["GET"])
+def loginPage():
+    return render_template("login.html")
 
+@app.route("/register", methods=["GET"])
+def registerPage():
+    return render_template("register.html")
+
+@app.route("/getme", methods=["GET"])
+def getme():
+    user_id = get_user_id_from_request()
+
+    if user_id is None:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        user = users_col.find_one({"_id": ObjectId(user_id)})
+    except:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    if user is None:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    return jsonify({"name": user.get("name", "")})
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    extra_dirs = ['templates','static']
+    extra_files = extra_dirs[:]
+    for extra_dir in extra_dirs:
+        for dirname, dirs, files in os.walk(extra_dir):
+            for filename in files:
+                filename = path.join(dirname, filename)
+                if path.isfile(filename):
+                    extra_files.append(filename)
+    app.run(host="0.0.0.0", port=port, debug=True, extra_files=extra_files)
