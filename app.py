@@ -114,7 +114,7 @@ def get_chat_history_context(user_id: str, question: str) -> str:
     """Vector search over this user's past chats in MongoDB."""
     question_embedding = embedding_model.encode([question])[0].tolist()
 
-    pipeline = [
+    pipeline1 = [
         {
             "$vectorSearch": {
                 "index": "chat_vector_index",
@@ -134,11 +134,31 @@ def get_chat_history_context(user_id: str, question: str) -> str:
         }
     ]
 
-    results = list(chats_col.aggregate(pipeline))
+    pipeline2 = [
+        {
+            "$vectorSearch": {
+                "index": "chat_vector_index",
+                "path": "responseEmbedding",
+                "queryVector": question_embedding,
+                "numCandidates": 50,
+                "limit": 5,
+                "filter": {"userId": user_id}
+            }
+        },
+        {
+            "$project": {
+                "question": 1,
+                "response": 1,
+                "score": {"$meta": "vectorSearchScore"}
+            }
+        }
+    ]
 
-    if not results:
+    results1 = list(chats_col.aggregate(pipeline1))
+    results2 = list(chats_col.aggregate(pipeline2))
+    if not results1 and not results2:
         return ""
-
+    results = results1 + results2
     history_parts = []
     for r in results:
         history_parts.append(f"Q: {r['question']}\nA: {r['response']}")
